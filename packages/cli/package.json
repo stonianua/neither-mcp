@@ -1,0 +1,45 @@
+{
+  "name": "neither",
+  "version": "0.1.1",
+  "type": "module",
+  "description": "Neither CLI — push local docs to decision memory",
+  "license": "MIT",
+  "homepage": "https://www.neither.online/docs/cli",
+  "bugs": {
+    "url": "https://github.com/stonianua/neither-mcp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stonianua/neither-mcp.git",
+    "directory": "packages/cli"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "bin": {
+    "neither": "./dist/index.js"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "pnpm run build",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "commander": "^14.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.5",
+    "vitest": "^3.2.4"
+  }
+}
