@@ -1,0 +1,90 @@
+{
+  "manifest_version": "0.2",
+  "name": "neither-mcp",
+  "display_name": "Neither",
+  "version": "0.1.2",
+  "description": "Decision memory with Decision/Rejected/Constraint/Citation via memory_for_file",
+  "long_description": "Neither is decision memory for Cursor and Claude Desktop. This bundle starts the published stdio MCP server with `npx -y @neitherai/mcp-server@latest` (no vendored node_modules). Tools return cited Decision / Rejected / Constraint / Citation prose, including supersession — not flat chat memory. Free history is roughly a 3-day snapshot. Get a workspace key at the homepage URL.",
+  "author": {
+    "name": "Fedir Martynov / Neither",
+    "email": "support@neither.online",
+    "url": "https://www.neither.online/developers/quickstart"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stonianua/neither-mcp.git"
+  },
+  "homepage": "https://www.neither.online/developers/quickstart",
+  "documentation": "https://www.neither.online/docs/mcp",
+  "support": "https://github.com/stonianua/neither-mcp/issues",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "npx",
+      "args": ["-y", "@neitherai/mcp-server@latest"],
+      "env": {
+        "NEITHER_API_KEY": "${user_config.NEITHER_API_KEY}",
+        "NEITHER_API_BASE": "${user_config.NEITHER_API_BASE}"
+      },
+      "platform_overrides": {
+        "win32": {
+          "command": "npx.cmd"
+        }
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "memory_for_file",
+      "description": "Cited Decision/Rejected/Constraint/Citation prose for a repo file path"
+    },
+    {
+      "name": "memory_search",
+      "description": "Natural-language search over workspace decision memory"
+    },
+    {
+      "name": "memory_snippet_fetch",
+      "description": "Fetch a verbatim snippet by provenance source_id"
+    },
+    {
+      "name": "memory_timeline",
+      "description": "Time-ordered memory view for a topic or anchor"
+    },
+    {
+      "name": "memory_push",
+      "description": "Close a decision or seed an ADR snippet with provenance"
+    }
+  ],
+  "keywords": [
+    "mcp",
+    "decision-memory",
+    "cursor",
+    "claude-desktop",
+    "stdio"
+  ],
+  "license": "MIT",
+  "privacy_policies": ["https://www.neither.online/privacy"],
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  },
+  "user_config": {
+    "NEITHER_API_KEY": {
+      "type": "string",
+      "title": "Neither API key",
+      "description": "Workspace key (sk_ctx_…) from https://www.neither.online/developers/quickstart",
+      "sensitive": true,
+      "required": true
+    },
+    "NEITHER_API_BASE": {
+      "type": "string",
+      "title": "Neither API base",
+      "description": "API host for the stdio MCP server",
+      "default": "https://api.neither.online",
+      "required": false
+    }
+  }
+}

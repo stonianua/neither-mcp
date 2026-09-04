@@ -30,6 +30,19 @@ Add this to Cursor MCP settings (`mcp.json`) or Claude Desktop config:
 
 Docs: [https://www.neither.online/docs/mcp](https://www.neither.online/docs/mcp)
 
+Agent install: [llms-install.md](./llms-install.md)
+
+## Claude Desktop (MCPB)
+
+One-click stdio bundle. Spawn is `npx -y @neitherai/mcp-server@latest` (no vendored `node_modules`).
+
+```bash
+npx -y @anthropic-ai/mcpb validate mcpb/manifest.json
+npx -y @anthropic-ai/mcpb pack mcpb
+```
+
+See [mcpb/README.md](./mcpb/README.md). Releases may attach a built `.mcpb`.
+
 ## CLI
 
 Push local docs to decision memory (separate from MCP install):
@@ -63,5 +76,7 @@ Report bugs and feature requests at [https://github.com/stonianua/neither-mcp/is
 | --- | --- |
 | `packages/mcp-server/` | `@neitherai/mcp-server` |
 | `packages/cli/` | `neither` CLI |
+| `mcpb/` | Claude Desktop MCPB manifest (npx spawn) |
+| `llms-install.md` | Short agent-installable steps |
 
 License: MIT (see LICENSE).

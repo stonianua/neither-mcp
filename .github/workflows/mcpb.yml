@@ -1,0 +1,33 @@
+name: mcpb
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "mcpb/**"
+      - "scripts/pack-mcpb.sh"
+      - ".github/workflows/mcpb.yml"
+  pull_request:
+    paths:
+      - "mcpb/**"
+      - "scripts/pack-mcpb.sh"
+      - ".github/workflows/mcpb.yml"
+
+jobs:
+  validate-and-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate MCPB manifest
+        run: npx -y @anthropic-ai/mcpb validate mcpb/manifest.json
+      - name: Pack MCPB
+        run: bash scripts/pack-mcpb.sh
+      - name: Upload MCPB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: neither-mcpb
+          path: neither-mcp-*.mcpb
+          if-no-files-found: error
