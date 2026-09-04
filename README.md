@@ -43,6 +43,10 @@ npx -y @anthropic-ai/mcpb pack mcpb
 
 See [mcpb/README.md](./mcpb/README.md). Releases may attach a built `.mcpb`.
 
+## Sample demo
+
+Clone [examples/neither-demo](./examples/neither-demo) and see whether your agent knows why these decisions were made (Postgres, auth supersession, rejected Kafka). Push + three ask-why prompts: [examples/neither-demo/README.md](./examples/neither-demo/README.md).
+
 ## CLI
 
 Push local docs to decision memory (separate from MCP install):
@@ -78,5 +82,6 @@ Report bugs and feature requests at [https://github.com/stonianua/neither-mcp/is
 | `packages/cli/` | `neither` CLI |
 | `mcpb/` | Claude Desktop MCPB manifest (npx spawn) |
 | `llms-install.md` | Short agent-installable steps |
+| `examples/neither-demo/` | Sample ADRs to push and ask why |
 
 License: MIT (see LICENSE).
