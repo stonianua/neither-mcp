@@ -25,24 +25,24 @@ Packages: `@neitherai/mcp-server@0.1.2`, CLI `neither@0.1.2`. Use `@latest` in c
 
 ## Seed docs
 
-Sample ADRs: [examples/neither-demo](./examples/neither-demo) (Postgres, Stripe billing, rejected Kafka, auth supersession).
+Try-it sample: https://github.com/stonianua/neither-demo — from that repo:
 
 ```bash
-npx -y neither@latest push ./examples/neither-demo/docs
+npx -y neither@latest push ./docs
 ```
 
 ## Verify
 
 Ask (agent should call `memory_for_file`):
 
-1. Why didn't we use Kafka? (`examples/neither-demo/docs/004-rejected-kafka.md`)
-2. What replaced the original auth decision? (`examples/neither-demo/docs/002-auth.md` / `005-auth-superseded.md`)
-3. What constraint caused us to choose Postgres? (`examples/neither-demo/docs/001-database.md`)
+1. Why didn't we use Kafka?
+2. What replaced the original auth decision?
+3. What constraint caused us to choose Postgres?
 
 Expected cited shape:
 
 ```
-File: examples/neither-demo/docs/001-database.md
+File: docs/001-database.md
 Matches: N
 
 Decision: …
@@ -54,5 +54,5 @@ Citation: …
 ## Troubleshoot
 
 1. `NEITHER_API_KEY is required` — paste a `sk_ctx_…` key from the quickstart into MCP `env`.
-2. `No cited decisions found` — run `npx -y neither@latest push ./examples/neither-demo/docs` first; free history is ~3 days.
+2. `No cited decisions found` — clone https://github.com/stonianua/neither-demo and `npx -y neither@latest push ./docs` first; free history is ~3 days.
 3. Server does not start — Node 20+ and `npx` must be on PATH; this is stdio only (not remote HTTP).
