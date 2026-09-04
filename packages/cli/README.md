@@ -2,21 +2,20 @@
 
 Neither CLI — push local docs to decision memory from your terminal.
 
-**Free beta** — no checkout required.
+**Free beta** — no checkout required. Get a workspace API key: [https://www.neither.online/developers/quickstart](https://www.neither.online/developers/quickstart)
 
 ## Install
 
 Zero-setup (npx):
 
 ```bash
-npx -y neither@latest --help
+npx -y neither@latest push <path>
 ```
 
 Homebrew (macOS / Linuxbrew):
 
 ```bash
 brew install stonianua/neither/neither
-neither --help
 ```
 
 ## Environment variables
@@ -44,5 +43,3 @@ npx -y neither@latest push ./docs
 ## Documentation
 
 CLI reference: [https://www.neither.online/docs/cli](https://www.neither.online/docs/cli)
-
-Get a free API key: [https://www.neither.online/developers/quickstart](https://www.neither.online/developers/quickstart)

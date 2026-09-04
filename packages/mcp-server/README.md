@@ -1,12 +1,12 @@
 # @neitherai/mcp-server
 
-Stdio MCP server for Cursor and other agent IDEs. Connects to Neither decision memory with cited provenance — not anonymous text chunks.
+Stdio MCP server for Cursor and Claude Desktop. Connects to Neither decision memory with cited provenance — not anonymous text chunks.
 
-**Free beta** — no waitlist required. Create a workspace API key and paste it into your MCP config.
+**Free beta** — no waitlist required. Create a workspace API key and paste it into your MCP config: [https://www.neither.online/developers/quickstart](https://www.neither.online/developers/quickstart)
 
-## Cursor install
+## Cursor / Claude Desktop install
 
-Add this to your Cursor MCP settings (`mcp.json`):
+Add this to Cursor MCP settings (`mcp.json`) or Claude Desktop config:
 
 ```json
 {
@@ -15,7 +15,7 @@ Add this to your Cursor MCP settings (`mcp.json`):
       "command": "npx",
       "args": ["-y", "@neitherai/mcp-server@latest"],
       "env": {
-        "NEITHER_API_KEY": "sk_ctx_your_workspace_key",
+        "NEITHER_API_KEY": "sk_ctx_…",
         "NEITHER_API_BASE": "https://api.neither.online"
       }
     }
@@ -23,7 +23,7 @@ Add this to your Cursor MCP settings (`mcp.json`):
 }
 ```
 
-`NEITHER_API_BASE` defaults to `https://api.neither.online` when omitted.
+`NEITHER_API_KEY` is required. `NEITHER_API_BASE` defaults to `https://api.neither.online` when omitted.
 
 ## Environment variables
 
@@ -47,5 +47,3 @@ Call Neither at **delivery forks and planning writes** — when choosing between
 ## Documentation
 
 Full tool reference and provenance fields: [https://www.neither.online/docs/mcp](https://www.neither.online/docs/mcp)
-
-Get a free API key: [https://www.neither.online/developers/quickstart](https://www.neither.online/developers/quickstart)
