@@ -29,6 +29,23 @@ Install the resulting `.mcpb` in Claude Desktop. Get a key at [https://www.neith
 
 `.github/workflows/mcpb.yml` validates the manifest and packs the bundle on changes to `mcpb/` and `scripts/pack-mcpb.sh`. The `.mcpb` is a CI artifact (not committed).
 
+## GitHub About leftover
+
+Cursor’s git token can push releases but cannot PATCH repo metadata. A repo admin (`gh auth login` as `stonianua`) should set description and topics (do **not** add `claude-code`):
+
+```bash
+gh repo edit stonianua/neither-mcp \
+  --description "Decision memory MCP for Cursor and Claude Desktop — cited Decision / Rejected / Constraint / supersession, not flat chat memory." \
+  --add-topic mcp \
+  --add-topic model-context-protocol \
+  --add-topic ai-memory \
+  --add-topic agent-memory \
+  --add-topic cursor \
+  --add-topic knowledge-graph \
+  --add-topic context-engineering \
+  --add-topic developer-tools
+```
+
 ## Smithery leftover
 
 This repo does not publish to Smithery. After packing, a human logged into [smithery.ai](https://smithery.ai) can upload the stdio bundle (do not publish as remote HTTP):
