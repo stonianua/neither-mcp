@@ -47,3 +47,13 @@ Call Neither at **delivery forks and planning writes** — when choosing between
 ## Documentation
 
 Full tool reference and provenance fields: [https://www.neither.online/docs/mcp](https://www.neither.online/docs/mcp)
+
+API contract (fields this server expects from `api.neither.online`, enrichment lifecycle, known gaps): [docs/API_CONTRACT.md](./docs/API_CONTRACT.md)
+
+## Tests
+
+Contract/fixture tests (no live API key):
+
+```bash
+cd packages/mcp-server && pnpm test
+```

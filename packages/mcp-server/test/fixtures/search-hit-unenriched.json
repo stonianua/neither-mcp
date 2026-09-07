@@ -1,0 +1,18 @@
+{
+  "query": "Why did Harbor choose invite codes over open signup",
+  "results": [
+    {
+      "id": "node_harbor_invite_001",
+      "title": "Harbor signup: invite codes over open registration",
+      "decision": "Harbor signup: invite codes over open registration",
+      "rejected": null,
+      "constraint": null,
+      "excerpt": "Harbor evaluated signup models for early access. Invite codes allow controlled rollout. Stripe checkout would enable self-serve but was deferred.",
+      "score": 0.88,
+      "provenance": {
+        "source_document_id": "src_harbor_signup_adr"
+      },
+      "retrieval_mode": "semantic"
+    }
+  ]
+}

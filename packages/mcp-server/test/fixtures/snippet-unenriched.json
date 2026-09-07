@@ -1,0 +1,13 @@
+{
+  "source_id": "src_harbor_signup_adr",
+  "node_id": "node_harbor_invite_001",
+  "title": "Harbor signup: invite codes over open registration",
+  "content": "Harbor evaluated signup models for early access. Invite codes allow controlled rollout. Stripe checkout would enable self-serve but was deferred.",
+  "bc_id": "bc_harbor",
+  "occurred_at": "2026-09-07T10:00:00.000Z",
+  "participants": ["product"],
+  "thread_id": null,
+  "enrichment": "ready",
+  "content_scope": "node_excerpt",
+  "aligned_to": "node"
+}
