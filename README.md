@@ -30,6 +30,8 @@ Add this to Cursor MCP settings (`mcp.json`) or Claude Desktop config:
 
 Docs: [https://www.neither.online/docs/mcp](https://www.neither.online/docs/mcp)
 
+The root `Dockerfile` builds this stdio server (not a remote HTTP process) so hosts such as [Glama](https://glama.ai/mcp/servers/stonianua/neither-mcp) can introspect `tools/list`. The image sets a placeholder `NEITHER_API_KEY` so the process can start; inject a real workspace key at run time.
+
 Agent install: [llms-install.md](./llms-install.md)
 
 ## Claude Desktop (MCPB)
