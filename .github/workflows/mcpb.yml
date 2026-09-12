@@ -2,7 +2,6 @@ name: mcpb
 
 on:
   push:
-    branches: [main]
     paths:
       - "mcpb/**"
       - "packages/mcp-server/**"
