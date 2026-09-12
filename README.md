@@ -45,6 +45,19 @@ npx -y @anthropic-ai/mcpb pack mcpb
 
 See [mcpb/README.md](./mcpb/README.md). Releases may attach a built `.mcpb`.
 
+## Cursor Marketplace packaging
+
+This repo is a **single Cursor Plugin** (not a multi-plugin marketplace). Manifests follow [cursor/plugin-template](https://github.com/cursor/plugin-template) and the [Cursor Plugins reference](https://cursor.com/docs/reference/plugins):
+
+| Path | Role |
+| --- | --- |
+| `.cursor-plugin/plugin.json` | Cursor Plugin manifest + `NEITHER_API_KEY` user variable |
+| `mcp.json` | Local stdio MCP: `npx -y @neitherai/mcp-server@latest` |
+
+There is no `.cursor-plugin/marketplace.json` (that file is only for multi-plugin repos). There is no remote MCP URL and no OAuth-only install path.
+
+After a marketplace install, set `NEITHER_API_KEY` under **Plugins → Configure** (workspace key from [quickstart](https://www.neither.online/developers/quickstart)). Node 20+ and `npx` must be on PATH. This packaging does **not** mean Neither is listed on the Cursor Marketplace; a maintainer still submits the public repo at [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish) for manual review.
+
 Try-it sample: [https://github.com/stonianua/neither-demo](https://github.com/stonianua/neither-demo)
 
 ## CLI
@@ -81,6 +94,8 @@ Report bugs and feature requests at [https://github.com/stonianua/neither-mcp/is
 | `packages/mcp-server/` | `@neitherai/mcp-server` |
 | `packages/cli/` | `neither` CLI |
 | `mcpb/` | Claude Desktop MCPB manifest (npx spawn) |
+| `.cursor-plugin/plugin.json` | Cursor Plugin manifest (marketplace packaging) |
+| `mcp.json` | Cursor Plugin stdio MCP config (`npx` spawn) |
 | `llms-install.md` | Short agent-installable steps |
 
 License: MIT (see LICENSE).
