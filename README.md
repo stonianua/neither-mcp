@@ -30,7 +30,7 @@ Canonical install: `npx -y @neitherai/mcp-server@latest`
       "command": "npx",
       "args": ["-y", "@neitherai/mcp-server@latest"],
       "env": {
-        "NEITHER_API_KEY": "sk_ctx_…",
+        "NEITHER_API_KEY": "REPLACE_WITH_YOUR_WORKSPACE_KEY",
         "NEITHER_API_BASE": "https://api.neither.online"
       }
     }
