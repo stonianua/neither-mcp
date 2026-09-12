@@ -5,13 +5,17 @@ on:
     branches: [main]
     paths:
       - "mcpb/**"
+      - "packages/mcp-server/**"
       - "scripts/pack-mcpb.sh"
       - ".github/workflows/mcpb.yml"
+      - "DESKTOP-EXTENSION.md"
   pull_request:
     paths:
       - "mcpb/**"
+      - "packages/mcp-server/**"
       - "scripts/pack-mcpb.sh"
       - ".github/workflows/mcpb.yml"
+      - "DESKTOP-EXTENSION.md"
 
 jobs:
   validate-and-pack:
@@ -21,6 +25,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Install, build, and test MCP server
+        working-directory: packages/mcp-server
+        run: |
+          npm install
+          npm run build
+          npm test
       - name: Validate MCPB manifest
         run: npx -y @anthropic-ai/mcpb validate mcpb/manifest.json
       - name: Pack MCPB

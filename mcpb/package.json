@@ -1,0 +1,14 @@
+{
+  "name": "neither-mcp-desktop-extension",
+  "private": true,
+  "version": "0.1.2",
+  "type": "module",
+  "description": "Claude Desktop MCPB launcher for the Neither local stdio MCP server",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@neitherai/mcp-server": "file:../packages/mcp-server"
+  }
+}

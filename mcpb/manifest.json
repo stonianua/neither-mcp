@@ -1,36 +1,32 @@
 {
-  "manifest_version": "0.2",
+  "manifest_version": "0.3",
   "name": "neither-mcp",
   "display_name": "Neither",
   "version": "0.1.2",
-  "description": "Decision memory with Decision/Rejected/Constraint/Citation via memory_for_file",
-  "long_description": "Neither is decision memory for Cursor and Claude Desktop. This bundle starts the published stdio MCP server with `npx -y @neitherai/mcp-server@latest` (no vendored node_modules). Tools return cited Decision / Rejected / Constraint / Citation prose, including supersession — not flat chat memory. Free history is roughly a 3-day snapshot. Get a workspace key at the homepage URL.",
+  "description": "Decision memory with cited Decision/Rejected/Constraint/Citation via memory_for_file",
+  "long_description": "Neither is decision memory for Cursor and Claude Desktop. This desktop extension runs a local stdio MCP server (Node 20+) bundled from @neitherai/mcp-server. Tools return cited Decision / Rejected / Constraint / Citation prose, including supersession. Requires a workspace API key (NEITHER_API_KEY). Get a workspace key at https://www.neither.online/start/?product=dev",
   "author": {
     "name": "Fedir Martynov / Neither",
     "email": "support@neither.online",
-    "url": "https://www.neither.online/developers/quickstart"
+    "url": "https://www.neither.online/start/?product=dev"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/stonianua/neither-mcp.git"
   },
-  "homepage": "https://www.neither.online/developers/quickstart",
+  "homepage": "https://www.neither.online/start/?product=dev",
   "documentation": "https://www.neither.online/docs/mcp",
   "support": "https://github.com/stonianua/neither-mcp/issues",
+  "icon": "icon.png",
   "server": {
     "type": "node",
     "entry_point": "server/index.js",
     "mcp_config": {
-      "command": "npx",
-      "args": ["-y", "@neitherai/mcp-server@latest"],
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
       "env": {
         "NEITHER_API_KEY": "${user_config.NEITHER_API_KEY}",
         "NEITHER_API_BASE": "${user_config.NEITHER_API_BASE}"
-      },
-      "platform_overrides": {
-        "win32": {
-          "command": "npx.cmd"
-        }
       }
     }
   },
@@ -64,9 +60,9 @@
     "stdio"
   ],
   "license": "MIT",
-  "privacy_policies": ["https://www.neither.online/privacy"],
+  "privacy_policies": ["https://www.neither.online/privacy/"],
   "compatibility": {
-    "platforms": ["darwin", "win32", "linux"],
+    "platforms": ["darwin", "win32"],
     "runtimes": {
       "node": ">=20.0.0"
     }
@@ -75,14 +71,14 @@
     "NEITHER_API_KEY": {
       "type": "string",
       "title": "Neither API key",
-      "description": "Workspace key (sk_ctx_…) from https://www.neither.online/developers/quickstart",
+      "description": "Workspace key (sk_ctx_…) from https://www.neither.online/start/?product=dev. Stored as a secret.",
       "sensitive": true,
       "required": true
     },
     "NEITHER_API_BASE": {
       "type": "string",
       "title": "Neither API base",
-      "description": "API host for the stdio MCP server",
+      "description": "API host for the stdio MCP server. Leave the default unless you were given another host.",
       "default": "https://api.neither.online",
       "required": false
     }

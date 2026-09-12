@@ -1,33 +1,24 @@
 # Neither MCPB
 
-Claude Desktop one-click bundle for the Neither stdio MCP server.
+Claude Desktop one-click bundle for the Neither **local stdio** MCP server.
 
-Spawn is `npx -y @neitherai/mcp-server@latest` with `NEITHER_API_KEY` / `NEITHER_API_BASE`. The archive does not vendor `node_modules`.
+Canonical pack and sideload steps, env vars, and the Windows + macOS smoke checklist: **[DESKTOP-EXTENSION.md](../DESKTOP-EXTENSION.md)**.
 
-Registry name (already published): `io.github.stonianua/neither-mcp`.
-
-Clients: Cursor (JSON config) and Claude Desktop (this `.mcpb`). Stdio only — not remote HTTP.
+This packaging is not a Connectors Directory listing and is not a submitted Anthropic extension.
 
 ## Rebuild
 
-From the repo root:
-
-```bash
-npx -y @anthropic-ai/mcpb validate mcpb/manifest.json
-npx -y @anthropic-ai/mcpb pack mcpb neither-mcp-0.1.2.mcpb
-```
-
-Or:
+From the repo root (Node 20+):
 
 ```bash
 bash scripts/pack-mcpb.sh
 ```
 
-Install the resulting `.mcpb` in Claude Desktop. Get a key at [https://www.neither.online/developers/quickstart](https://www.neither.online/developers/quickstart).
+The archive vendors `node_modules` and spawns `node ${__dirname}/server/index.js` (Claude Desktop’s bundled Node). Cursor JSON config still uses `npx -y @neitherai/mcp-server@latest`.
 
 ## CI
 
-`.github/workflows/mcpb.yml` validates the manifest and packs the bundle on changes to `mcpb/` and `scripts/pack-mcpb.sh`. The `.mcpb` is a CI artifact (not committed).
+`.github/workflows/mcpb.yml` builds the server, runs annotation tests, validates the manifest, and packs the bundle. The `.mcpb` is a CI artifact (not committed).
 
 ## GitHub About leftover
 
