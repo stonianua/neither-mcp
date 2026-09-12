@@ -2,7 +2,7 @@
 
 Public source mirror for the Neither CLI and MCP server.
 
-Neither is decision memory for **Cursor** and **Claude Desktop**. Get a workspace API key: [https://www.neither.online/developers/quickstart](https://www.neither.online/developers/quickstart)
+Neither is decision memory for **Cursor** and **Claude Desktop**. Start / get a workspace API key: [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev)
 
 ## MCP server (Cursor / Claude Desktop)
 
@@ -36,14 +36,19 @@ Agent install: [llms-install.md](./llms-install.md)
 
 ## Claude Desktop (MCPB)
 
-One-click stdio bundle. Spawn is `npx -y @neitherai/mcp-server@latest` (no vendored `node_modules`).
+One-click local stdio bundle for Claude Desktop. Pack command:
 
 ```bash
-npx -y @anthropic-ai/mcpb validate mcpb/manifest.json
-npx -y @anthropic-ai/mcpb pack mcpb
+bash scripts/pack-mcpb.sh
 ```
 
-See [mcpb/README.md](./mcpb/README.md). Releases may attach a built `.mcpb`.
+That vendors `packages/mcp-server` into the `.mcpb` and spawns Claude’s bundled Node (`node ${__dirname}/server/index.js`). Cursor JSON config still uses `npx -y @neitherai/mcp-server@latest`.
+
+Sideload steps, env vars, and the Windows + macOS smoke checklist (human; not run in CI): [DESKTOP-EXTENSION.md](./DESKTOP-EXTENSION.md).
+
+This packaging does **not** mean the extension is listed or submitted to Anthropic.
+
+See also [mcpb/README.md](./mcpb/README.md). CI may attach a built `.mcpb`.
 
 ## Cursor Marketplace packaging
 
@@ -83,6 +88,18 @@ Published npm packages:
 - [`@neitherai/mcp-server`](https://www.npmjs.com/package/@neitherai/mcp-server) — MCP server for Cursor and Claude Desktop
 - [`neither`](https://www.npmjs.com/package/neither) — CLI for pushing local docs to decision memory
 
+## Privacy Policy
+
+The Neither privacy policy (collection, use and storage, third-party sharing / subprocessors, retention, and contact) is published at [https://www.neither.online/privacy/](https://www.neither.online/privacy/). Privacy contact: [privacy@neither.online](mailto:privacy@neither.online). Support: [support@neither.online](mailto:support@neither.online).
+
+This repository’s MCP server and Claude Desktop extension are a **local stdio** process. They are not a remote HTTPS MCP server.
+
+- **Collection.** Tool arguments you or the model supply (search queries, repo-relative file paths, snippet ids, and for `memory_push` snippet text and optional provenance). The workspace API key is sent as an HTTP Bearer token to the Neither API (`NEITHER_API_BASE`, default `https://api.neither.online`).
+- **Use and storage.** The local process uses the key only to call that API. Claude Desktop stores sensitive `user_config` values in the OS keychain. Neither stores workspace decision memory as described in the privacy policy.
+- **Third-party sharing.** The connector sends requests to the Neither API host you configure. Neither’s subprocessors and sharing rules are in the privacy policy. This connector does not add a second vendor beyond that API host.
+- **Retention.** Per the privacy policy, workspace data is kept while the account is active; account or data deletion is removed within 30 days (backup window). The local extension does not keep a second copy of API responses on disk.
+- **Contact.** [privacy@neither.online](mailto:privacy@neither.online), [support@neither.online](mailto:support@neither.online), or [GitHub issues](https://github.com/stonianua/neither-mcp/issues).
+
 ## Issues
 
 Report bugs and feature requests at [https://github.com/stonianua/neither-mcp/issues](https://github.com/stonianua/neither-mcp/issues).
@@ -93,7 +110,8 @@ Report bugs and feature requests at [https://github.com/stonianua/neither-mcp/is
 | --- | --- |
 | `packages/mcp-server/` | `@neitherai/mcp-server` |
 | `packages/cli/` | `neither` CLI |
-| `mcpb/` | Claude Desktop MCPB manifest (npx spawn) |
+| `mcpb/` | Claude Desktop MCPB (bundled Node stdio) |
+| `DESKTOP-EXTENSION.md` | Build, sideload, env, Win/macOS smoke checklist |
 | `.cursor-plugin/plugin.json` | Cursor Plugin manifest (marketplace packaging) |
 | `mcp.json` | Cursor Plugin stdio MCP config (`npx` spawn) |
 | `llms-install.md` | Short agent-installable steps |
