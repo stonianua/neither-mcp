@@ -1,0 +1,32 @@
+{
+  "name": "neither",
+  "displayName": "Neither",
+  "version": "0.1.0",
+  "description": "Decision memory for Cursor via a local stdio MCP server (Node 20+). Tools return cited Decision / Rejected / Constraint / Citation, including supersession. Requires a workspace API key (NEITHER_API_KEY).",
+  "author": {
+    "name": "Fedir Martynov / Neither",
+    "email": "support@neither.online"
+  },
+  "homepage": "https://www.neither.online/developers/quickstart",
+  "repository": "https://github.com/stonianua/neither-mcp",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "decision-memory",
+    "stdio",
+    "cursor",
+    "provenance"
+  ],
+  "mcpServers": "./mcp.json",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "NEITHER_API_KEY": {
+        "type": "string",
+        "title": "Neither API key",
+        "description": "Workspace key (sk_ctx_…) from https://www.neither.online/developers/quickstart. Required. Set under Plugins → Configure. Do not commit the key."
+      }
+    },
+    "required": ["NEITHER_API_KEY"]
+  }
+}
