@@ -6,6 +6,7 @@ on:
       - "mcpb/**"
       - "packages/mcp-server/**"
       - "scripts/pack-mcpb.sh"
+      - "scripts/test-extracted-mcpb.mjs"
       - ".github/workflows/mcpb.yml"
       - "DESKTOP-EXTENSION.md"
   pull_request:
@@ -13,8 +14,12 @@ on:
       - "mcpb/**"
       - "packages/mcp-server/**"
       - "scripts/pack-mcpb.sh"
+      - "scripts/test-extracted-mcpb.mjs"
       - ".github/workflows/mcpb.yml"
       - "DESKTOP-EXTENSION.md"
+
+permissions:
+  contents: read
 
 jobs:
   validate-and-pack:
@@ -40,3 +45,10 @@ jobs:
           name: neither-mcpb
           path: neither-mcp-*.mcpb
           if-no-files-found: error
+      - name: Extracted MCPB first-use
+        env:
+          # Fork PRs receive empty values. Do not log these.
+          NEITHER_MCPB_TEST_API_KEY: ${{ secrets.NEITHER_MCPB_TEST_API_KEY }}
+          NEITHER_API_KEY: ${{ secrets.NEITHER_API_KEY }}
+          NEITHER_API_BASE: ${{ secrets.NEITHER_API_BASE }}
+        run: node scripts/test-extracted-mcpb.mjs
