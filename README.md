@@ -4,11 +4,24 @@ Public source mirror for the Neither CLI and MCP server.
 
 Neither is decision memory for **Cursor** and **Claude Desktop**. Start / get a workspace API key: [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev)
 
+### Try Neither in Cursor
+
+Get your workspace key from [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev).
+
+Then [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0=):
+
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](cursor://anysphere.cursor-deeplink/mcp/install?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0=)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-light.svg)](cursor://anysphere.cursor-deeplink/mcp/install?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0=)
+
+Configure the key locally in Cursor (replace `REPLACE_WITH_YOUR_WORKSPACE_KEY`). Node.js 20+ required.
+
+Then follow the existing own-project walkthrough: [llms-install.md](./llms-install.md) (first-use section).
+
 ## MCP server (Cursor / Claude Desktop)
 
 Canonical install: `npx -y @neitherai/mcp-server@latest`
 
-Add this to Cursor MCP settings (`mcp.json`) or Claude Desktop config:
+**Fallback** — add this to Cursor MCP settings (`mcp.json`) or Claude Desktop config:
 
 ```json
 {
@@ -17,7 +30,7 @@ Add this to Cursor MCP settings (`mcp.json`) or Claude Desktop config:
       "command": "npx",
       "args": ["-y", "@neitherai/mcp-server@latest"],
       "env": {
-        "NEITHER_API_KEY": "sk_ctx_…",
+        "NEITHER_API_KEY": "REPLACE_WITH_YOUR_WORKSPACE_KEY",
         "NEITHER_API_BASE": "https://api.neither.online"
       }
     }
