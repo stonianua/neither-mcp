@@ -18,7 +18,7 @@ The archive vendors `node_modules` and spawns `node ${__dirname}/server/index.js
 
 ## CI
 
-`.github/workflows/mcpb.yml` builds the server, runs annotation tests, validates the manifest, and packs the bundle. The `.mcpb` is a CI artifact (not committed).
+`.github/workflows/mcpb.yml` builds the server, runs annotation tests, validates the manifest, packs the bundle, then extracts the `.mcpb` outside the checkout and launches the manifest entry point (no repo `node_modules`, npm, or npx) for initialize / tools/list and a missing-key check. Authenticated retrieval runs only when a workspace key is present in same-repo CI secrets; otherwise it is reported **NOT TESTED**. The `.mcpb` is a CI artifact (not committed).
 
 ## GitHub About leftover
 
