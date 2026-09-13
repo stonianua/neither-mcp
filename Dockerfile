@@ -36,10 +36,17 @@ RUN set -eu; \
 FROM node:20-slim
 WORKDIR /app
 ENV NODE_ENV=production
-# Placeholder for registry introspection; override with a real workspace key.
-ENV NEITHER_API_KEY=placeholder
 COPY --from=build /app/package.json ./
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
+# Default a placeholder key at process start (not an ENV instruction — BuildKit
+# flags ENV *KEY* as a secret). tools/list does not call the API. Real clients
+# override NEITHER_API_KEY in the MCP env.
+RUN printf '%s\n' \
+  '#!/bin/sh' \
+  'export NEITHER_API_KEY="${NEITHER_API_KEY:-placeholder}"' \
+  'exec node /app/dist/index.js "$@"' \
+  > /usr/local/bin/neither-mcp-stdio \
+  && chmod 755 /usr/local/bin/neither-mcp-stdio
 USER node
-ENTRYPOINT ["node", "dist/index.js"]
+ENTRYPOINT ["neither-mcp-stdio"]
