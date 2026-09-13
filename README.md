@@ -8,10 +8,10 @@ Neither is decision memory for **Cursor** and **Claude Desktop**. Start / get a 
 
 Get your workspace key from [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev).
 
-Then [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0=):
+Then [Add to Cursor](https://cursor.com/en/install-mcp?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0%3D):
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](cursor://anysphere.cursor-deeplink/mcp/install?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0=)
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-light.svg)](cursor://anysphere.cursor-deeplink/mcp/install?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0=)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0%3D)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-light.svg)](https://cursor.com/en/install-mcp?name=neither&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBuZWl0aGVyYWkvbWNwLXNlcnZlckBsYXRlc3QiXSwiZW52Ijp7Ik5FSVRIRVJfQVBJX0tFWSI6IlJFUExBQ0VfV0lUSF9ZT1VSX1dPUktTUEFDRV9LRVkiLCJORUlUSEVSX0FQSV9CQVNFIjoiaHR0cHM6Ly9hcGkubmVpdGhlci5vbmxpbmUifX0%3D)
 
 Configure the key locally in Cursor (replace `REPLACE_WITH_YOUR_WORKSPACE_KEY`). Node.js 20+ required.
 
