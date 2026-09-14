@@ -2,7 +2,7 @@
 
 Public source mirror for the Neither CLI and MCP server.
 
-Neither is decision memory for **Cursor** and **Claude Desktop**. Start / get a workspace API key: [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev)
+Neither is decision memory for **Cursor** and **Claude Desktop**, with Gemini CLI as an additional install surface. Start / get a workspace API key: [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev)
 
 ### Try Neither in Cursor
 
@@ -61,7 +61,27 @@ Sideload steps, env vars, and the Windows + macOS smoke checklist (human; not ru
 
 This packaging does **not** mean the extension is listed or submitted to Anthropic.
 
-See also [mcpb/README.md](./mcpb/README.md). CI may attach a built `.mcpb`.
+See also [mcpb/README.md](./mcpb/README.md). CI may attach a built `.mcpb` to the GitHub Release. Do not remove that asset when attaching Gemini CLI archives.
+
+## Gemini CLI (additional install)
+
+Primary tested clients remain **Cursor** and **Claude Desktop**. Gemini CLI uses the same stdio server (`npx -y @neitherai/mcp-server@0.1.2` in `gemini-extension.json`; Cursor JSON uses `@latest`). This is **not** a claim that a Gemini gallery card is live.
+
+```bash
+gemini extensions install https://github.com/stonianua/neither-mcp
+```
+
+Enter `NEITHER_API_KEY` when prompted (required). Node.js 20+.
+
+Gemini CLI 0.59 treats that GitHub URL as a **github-release** install: it downloads a custom Release asset and only extracts `.tar.gz` / `.zip`. A GitHub Release whose only custom asset is the Claude Desktop `.mcpb` makes 0.59 unpack a non-extension tree, then `git clone` into the same non-empty temp dir fails. CI therefore also attaches `linux.neither-mcp.tar.gz`, `darwin.neither-mcp.tar.gz`, and `win32.neither-mcp.zip` (`gemini-extension.json` at archive root) on the latest GitHub Release, without replacing the `.mcpb`.
+
+If those Gemini archives are not on the Release yet, clone `HEAD` instead (you may need to confirm the git-clone fallback):
+
+```bash
+gemini extensions install https://github.com/stonianua/neither-mcp --ref=HEAD
+```
+
+Local-path install of this repo (a checkout that already contains `gemini-extension.json`) also works.
 
 ## Cursor Marketplace packaging
 
@@ -98,14 +118,14 @@ Docs: [https://www.neither.online/docs/cli](https://www.neither.online/docs/cli)
 
 Published npm packages:
 
-- [`@neitherai/mcp-server`](https://www.npmjs.com/package/@neitherai/mcp-server) — MCP server for Cursor and Claude Desktop
+- [`@neitherai/mcp-server`](https://www.npmjs.com/package/@neitherai/mcp-server) — MCP server for Cursor, Claude Desktop, and Gemini CLI
 - [`neither`](https://www.npmjs.com/package/neither) — CLI for pushing local docs to decision memory
 
 ## Privacy Policy
 
 The Neither privacy policy (collection, use and storage, third-party sharing / subprocessors, retention, and contact) is published at [https://www.neither.online/privacy/](https://www.neither.online/privacy/). Privacy contact: [privacy@neither.online](mailto:privacy@neither.online). Support: [support@neither.online](mailto:support@neither.online).
 
-This repository’s MCP server and Claude Desktop extension are a **local stdio** process. They are not a remote HTTPS MCP server.
+This repository’s MCP server, Claude Desktop extension, and Gemini CLI extension are a **local stdio** process. They are not a remote HTTPS MCP server.
 
 - **Collection.** Tool arguments you or the model supply (search queries, repo-relative file paths, snippet ids, and for `memory_push` snippet text and optional provenance). The workspace API key is sent as an HTTP Bearer token to the Neither API (`NEITHER_API_BASE`, default `https://api.neither.online`).
 - **Use and storage.** The local process uses the key only to call that API. Claude Desktop stores sensitive `user_config` values in the OS keychain. Neither stores workspace decision memory as described in the privacy policy.
@@ -124,9 +144,12 @@ Report bugs and feature requests at [https://github.com/stonianua/neither-mcp/is
 | `packages/mcp-server/` | `@neitherai/mcp-server` |
 | `packages/cli/` | `neither` CLI |
 | `mcpb/` | Claude Desktop MCPB (bundled Node stdio) |
+| `gemini-extension.json` | Gemini CLI extension manifest (stdio `npx`) |
+| `GEMINI.md` | Gemini CLI extension context |
 | `DESKTOP-EXTENSION.md` | Build, sideload, env, Win/macOS smoke checklist |
 | `.cursor-plugin/plugin.json` | Cursor Plugin manifest (marketplace packaging) |
 | `mcp.json` | Cursor Plugin stdio MCP config (`npx` spawn) |
 | `llms-install.md` | Short agent-installable steps |
+| `scripts/pack-gemini-extension.sh` | Gemini CLI github-release archives (`.tar.gz` / `.zip`) |
 
 License: MIT (see LICENSE).

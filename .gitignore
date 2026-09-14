@@ -5,3 +5,7 @@ dist/
 *.log
 .DS_Store
 *.mcpb
+# Gemini CLI github-release archives (scripts/pack-gemini-extension.sh)
+darwin.neither-mcp.tar.gz
+linux.neither-mcp.tar.gz
+win32.neither-mcp.zip

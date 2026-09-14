@@ -4,7 +4,7 @@ This repo can build a Claude Desktop **MCP Bundle** (`.mcpb`) for the Neither **
 
 This packaging is **not** a Connectors Directory listing and is **not** a submitted Anthropic desktop extension. Do **not** submit [Anthropic’s desktop-extension form](https://claude.com/docs/connectors/building/submission) from this PR — that step is Ted-only after Windows + macOS smoke.
 
-Clients claimed today: **Cursor** and **Claude Desktop** only. Claude Code is not a supported client.
+First-class clients: **Cursor** and **Claude Desktop**. Gemini CLI is an additional install surface (see the README). Claude Code is not a supported client.
 
 ## What gets installed
 
@@ -100,6 +100,13 @@ Do not invent a customer story or paste untested install proof into the form.
 | `mcpb/icon.png` | 512×512 PNG from Neither brand (`/brand/icon-512.png`) |
 | `packages/mcp-server` | Stdio server source (`tools/list` includes `title` + hints) |
 | `scripts/pack-mcpb.sh` | Canonical pack command |
+| `scripts/pack-gemini-extension.sh` | Gemini CLI github-release `.tar.gz` / `.zip` (does not replace the `.mcpb`) |
+
+## GitHub Release assets (Claude `.mcpb` vs Gemini CLI)
+
+Keep `neither-mcp-<version>.mcpb` on the GitHub Release. That is the Claude Desktop sideload file.
+
+Gemini CLI 0.59 `gemini extensions install https://github.com/stonianua/neither-mcp` prefers a github-release asset and only extracts `.tar.gz` / `.zip`. If the `.mcpb` is the **only** custom asset, 0.59 downloads it, fails to extract, then `git clone` into the same temp dir fails. CI attaches `linux.neither-mcp.tar.gz`, `darwin.neither-mcp.tar.gz`, and `win32.neither-mcp.zip` (same stdio `npx` extension; `gemini-extension.json` at archive root) **in addition to** the `.mcpb`. Do not delete the `.mcpb` to “fix” Gemini.
 
 ## Privacy (connector)
 
