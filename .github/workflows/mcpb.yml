@@ -52,3 +52,15 @@ jobs:
           NEITHER_API_KEY: ${{ secrets.NEITHER_API_KEY }}
           NEITHER_API_BASE: ${{ secrets.NEITHER_API_BASE }}
         run: node scripts/test-extracted-mcpb.mjs
+
+  # Existing workflow file so this branch's CI runs the 0.59 github-release
+  # fixture. Dedicated gemini-extension.yml attaches archives after merge to main.
+  gemini-extension-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Pack and test Gemini CLI github-release archives
+        run: node scripts/test-gemini-extension-pack.mjs
