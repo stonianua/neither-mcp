@@ -1,0 +1,23 @@
+{
+  "name": "neither-mcp",
+  "version": "0.1.2",
+  "description": "Company decision-memory MCP for AI agents — search, retrieve, and push durable context. Get a key at https://www.neither.online/start/?product=dev",
+  "settings": [
+    {
+      "name": "Neither API Key",
+      "description": "API key from https://www.neither.online/start/?product=dev (NEITHER_API_KEY).",
+      "envVar": "NEITHER_API_KEY",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "neither": {
+      "command": "npx",
+      "args": ["-y", "@neitherai/mcp-server@0.1.2"],
+      "env": {
+        "NEITHER_API_KEY": "${NEITHER_API_KEY}",
+        "NEITHER_API_BASE": "https://api.neither.online"
+      }
+    }
+  }
+}
