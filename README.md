@@ -71,14 +71,14 @@ Primary tested clients remain **Cursor** and **Claude Desktop**. Gemini CLI uses
 gemini extensions install https://github.com/stonianua/neither-mcp
 ```
 
-Enter `NEITHER_API_KEY` when prompted (required). Node.js 20+.
+Enter `NEITHER_API_KEY` when prompted (required). Node.js 20+. MCP stays Disconnected until the key is set.
 
-Gemini CLI 0.59 treats that GitHub URL as a **github-release** install: it downloads a custom Release asset and only extracts `.tar.gz` / `.zip`. A GitHub Release whose only custom asset is the Claude Desktop `.mcpb` makes 0.59 unpack a non-extension tree, then `git clone` into the same non-empty temp dir fails. CI therefore also attaches `linux.neither-mcp.tar.gz`, `darwin.neither-mcp.tar.gz`, and `win32.neither-mcp.zip` (`gemini-extension.json` at archive root) on the latest GitHub Release, without replacing the `.mcpb`.
+Gemini CLI 0.59 treats that GitHub URL as a **github-release** install: it downloads a custom Release asset and only extracts `.tar.gz` / `.zip`. Release `v0.1.2` attaches `linux.neither-mcp.tar.gz`, `darwin.neither-mcp.tar.gz`, and `win32.neither-mcp.zip` (`gemini-extension.json` at archive root) in addition to the Claude Desktop `.mcpb`. A Release whose only custom asset is the `.mcpb` still makes 0.59 unpack a non-extension tree, then `git clone` into the same non-empty temp dir fails — do not remove the `.mcpb`.
 
-If those Gemini archives are not on the Release yet, clone `HEAD` instead (you may need to confirm the git-clone fallback):
+If those Gemini archives misbehave, clone `main` instead:
 
 ```bash
-gemini extensions install https://github.com/stonianua/neither-mcp --ref=HEAD
+gemini extensions install https://github.com/stonianua/neither-mcp --ref=main
 ```
 
 Local-path install of this repo (a checkout that already contains `gemini-extension.json`) also works.
