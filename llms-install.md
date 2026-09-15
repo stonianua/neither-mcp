@@ -1,6 +1,6 @@
 # Neither — agent install
 
-Neither is decision memory for Cursor and Claude Desktop: cited Decision / Rejected / Constraint / Citation, not flat chat memory.
+Neither is decision memory for Cursor and Claude Desktop (Gemini CLI is an additional install surface): cited Decision / Rejected / Constraint / Citation, not flat chat memory.
 
 - `memory_search` — natural-language query. Use this to verify a note you just pushed.
 - `memory_for_file` — only when a real repo-relative `file_path` is supplied. Do not call it for general questions without a path.
@@ -19,7 +19,7 @@ Pick one existing, non-sensitive project note — a single markdown or text file
 
 Packages: `@neitherai/mcp-server@latest`, CLI `neither@latest`.
 
-Put the workspace key in the MCP client `env` (Cursor `mcp.json` or Claude Desktop config):
+Put the workspace key in the MCP client `env` (Cursor `mcp.json`, Claude Desktop config, or Gemini CLI’s `NEITHER_API_KEY` extension setting):
 
 ```json
 {

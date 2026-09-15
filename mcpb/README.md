@@ -18,11 +18,11 @@ The archive vendors `node_modules` and spawns `node ${__dirname}/server/index.js
 
 ## CI
 
-`.github/workflows/mcpb.yml` builds the server, runs annotation tests, validates the manifest, packs the bundle, then extracts the `.mcpb` outside the checkout and launches the manifest entry point (no repo `node_modules`, npm, or npx) for initialize / tools/list and a missing-key check. Authenticated retrieval runs only when a workspace key is present in same-repo CI secrets; otherwise it is reported **NOT TESTED**. The `.mcpb` is a CI artifact (not committed).
+`.github/workflows/mcpb.yml` builds the server, runs annotation tests, validates the manifest, packs the bundle, then extracts the `.mcpb` outside the checkout and launches the manifest entry point (no repo `node_modules`, npm, or npx) for initialize / tools/list and a missing-key check. Authenticated retrieval runs only when a workspace key is present in same-repo CI secrets; otherwise it is reported **NOT TESTED**. The `.mcpb` is a CI artifact (not committed). GitHub Releases should keep that `.mcpb` for Claude Desktop. Gemini CLI 0.59 github-release install is a **separate** set of `.tar.gz` / `.zip` assets (`scripts/pack-gemini-extension.sh`); do not replace the `.mcpb` with those.
 
 ## GitHub About leftover
 
-Cursor’s git token can push releases but cannot PATCH repo metadata. A repo admin (`gh auth login` as `stonianua`) should set description and topics (do **not** add `claude-code`):
+Cursor’s git token can push releases but cannot PATCH repo metadata. A repo admin (`gh auth login` as `stonianua`) should set description and topics (do **not** add `claude-code`). Adding `gemini-cli-extension` is only the Gemini crawler topic; it does **not** mean a gallery card is live:
 
 ```bash
 gh repo edit stonianua/neither-mcp \
@@ -35,6 +35,8 @@ gh repo edit stonianua/neither-mcp \
   --add-topic knowledge-graph \
   --add-topic context-engineering \
   --add-topic developer-tools
+# optional, not a live gallery-card claim:
+# --add-topic gemini-cli-extension
 ```
 
 ## Smithery leftover
