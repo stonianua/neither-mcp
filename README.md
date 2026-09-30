@@ -4,6 +4,8 @@ Public source mirror for the Neither CLI and MCP server.
 
 Neither is decision memory for **Cursor** and **Claude Desktop**, with Gemini CLI as an additional install surface. Start / get a workspace API key: [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev)
 
+**Install (Node 20+):** `npx -y @neitherai/mcp-server@latest` — then set `NEITHER_API_KEY` in your MCP config (Cursor `mcp.json` or Claude Desktop).
+
 ### Try Neither in Cursor
 
 Get your workspace key from [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev).
