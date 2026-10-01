@@ -1,10 +1,18 @@
 # @neitherai/mcp-server
 
+**Get your key:** [https://www.neither.online/start/?product=dev&utm_source=npm](https://www.neither.online/start/?product=dev&utm_source=npm)
+
 Stdio MCP server for Cursor and Claude Desktop. Connects to Neither decision memory with cited provenance — not anonymous text chunks.
 
-**Free beta** — no waitlist required. Create a workspace API key and paste it into your MCP config: [https://www.neither.online/start/?product=dev](https://www.neither.online/start/?product=dev)
+**Free beta** — no waitlist required. Paste the workspace API key using one of the two setup paths below.
 
-## Cursor / Claude Desktop install
+### Claude Code (`claude mcp add`)
+
+```bash
+claude mcp add neither -s user -e NEITHER_API_KEY=sk_ctx_… -e NEITHER_API_BASE=https://api.neither.online -- npx -y @neitherai/mcp-server@latest
+```
+
+### stdio / `mcp.json` (Cursor, Claude Desktop)
 
 Add this to Cursor MCP settings (`mcp.json`) or Claude Desktop config:
 
