@@ -1,6 +1,6 @@
 # Neither — agent install
 
-Neither is decision memory for Cursor and Claude Desktop (Gemini CLI is an additional install surface): cited Decision / Rejected / Constraint / Citation, not flat chat memory.
+Neither is decision memory for Cursor, Claude Desktop, and Claude Code (Gemini CLI is an additional install surface): cited Decision / Rejected / Constraint / Citation, not flat chat memory.
 
 - `memory_search` — natural-language query. Use this to verify a note you just pushed.
 - `memory_for_file` — only when a real repo-relative `file_path` is supplied. Do not call it for general questions without a path.
@@ -19,7 +19,7 @@ Pick one existing, non-sensitive project note — a single markdown or text file
 
 Packages: `@neitherai/mcp-server@latest`, CLI `neither@latest`.
 
-Put the workspace key in the MCP client `env` (Cursor `mcp.json`, Claude Desktop config, or Gemini CLI’s `NEITHER_API_KEY` extension setting):
+Put the workspace key in the MCP client `env` (Cursor `mcp.json`, Claude Desktop config, Claude Code `claude mcp add … -e NEITHER_API_KEY=…`, or Gemini CLI’s `NEITHER_API_KEY` extension setting):
 
 ```json
 {
@@ -37,6 +37,18 @@ Put the workspace key in the MCP client `env` (Cursor `mcp.json`, Claude Desktop
 ```
 
 The CLI does not read this file. A working MCP connection does not set `NEITHER_API_KEY` for `npx neither`.
+
+Claude Code has no Neither marketplace card yet. Closest path (same stdio server):
+
+```bash
+claude mcp add neither -s user \
+  -e NEITHER_API_KEY=sk_ctx_… \
+  -e NEITHER_API_BASE=https://api.neither.online \
+  -- npx -y @neitherai/mcp-server@latest
+```
+
+Confirm with `claude mcp list` (expect Connected). Use a new conversation for `memory_search` in step 5.
+
 
 ### 3. CLI terminal (same workspace key)
 

@@ -2,9 +2,9 @@
 
 Public source mirror for the Neither CLI and MCP server.
 
-Neither is decision memory for **Cursor** and **Claude Desktop**, with Gemini CLI as an additional install surface. Start / get a workspace API key: [https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp](https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp)
+Neither is decision memory for **Cursor**, **Claude Desktop**, and **Claude Code**, with Gemini CLI as an additional install surface. Start / get a workspace API key: [https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp](https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp)
 
-**Install (Node 20+):** `npx -y @neitherai/mcp-server@latest` — then set `NEITHER_API_KEY` in your MCP config (Cursor `mcp.json` or Claude Desktop).
+**Install (Node 20+):** `npx -y @neitherai/mcp-server@latest` — then set `NEITHER_API_KEY` in your MCP config (Cursor `mcp.json`, Claude Desktop, or Claude Code `claude mcp add`).
 
 ### Try Neither in Cursor
 
@@ -19,11 +19,11 @@ Configure the key locally in Cursor (replace `REPLACE_WITH_YOUR_WORKSPACE_KEY`).
 
 Then follow the existing own-project walkthrough: [llms-install.md](./llms-install.md) (first-use section).
 
-## MCP server (Cursor / Claude Desktop)
+## MCP server (Cursor / Claude Desktop / Claude Code)
 
 Canonical install: `npx -y @neitherai/mcp-server@latest`
 
-**Fallback** — add this to Cursor MCP settings (`mcp.json`) or Claude Desktop config:
+**Fallback** — add this to Cursor MCP settings (`mcp.json`), Claude Desktop config, or Claude Code user MCP config:
 
 ```json
 {
@@ -48,6 +48,21 @@ Docs: [https://www.neither.online/docs/mcp](https://www.neither.online/docs/mcp)
 The root `Dockerfile` builds this stdio server (not a remote HTTP process) so hosts such as [Glama](https://glama.ai/mcp/servers/stonianua/neither-mcp) can introspect `tools/list`. The image sets a placeholder `NEITHER_API_KEY` so the process can start; inject a real workspace key at run time.
 
 Agent install: [llms-install.md](./llms-install.md)
+
+## Claude Code (CLI)
+
+Neither is not listed in a Claude Code marketplace card today. Use the same local stdio server via Claude Code’s MCP commands (Node 20+):
+
+```bash
+claude mcp add neither -s user \
+  -e NEITHER_API_KEY=sk_ctx_… \
+  -e NEITHER_API_BASE=https://api.neither.online \
+  -- npx -y @neitherai/mcp-server@latest
+```
+
+Then `claude mcp list` should show `neither` as Connected. Put the workspace key only in that `-e` / config env (never in chat). Restart or open a new Claude Code session, then ask for `memory_search` on a note you pushed (see [llms-install.md](./llms-install.md)).
+
+Equivalent JSON (if you edit Claude Code user MCP config by hand) matches the Cursor / Claude Desktop block below.
 
 ## Claude Desktop (MCPB)
 
@@ -120,7 +135,7 @@ Docs: [https://www.neither.online/docs/cli](https://www.neither.online/docs/cli)
 
 Published npm packages:
 
-- [`@neitherai/mcp-server`](https://www.npmjs.com/package/@neitherai/mcp-server) — MCP server for Cursor, Claude Desktop, and Gemini CLI
+- [`@neitherai/mcp-server`](https://www.npmjs.com/package/@neitherai/mcp-server) — MCP server for Cursor, Claude Desktop, Claude Code, and Gemini CLI
 - [`neither`](https://www.npmjs.com/package/neither) — CLI for pushing local docs to decision memory
 
 ## Privacy Policy
