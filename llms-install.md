@@ -5,7 +5,7 @@ Neither is decision memory for Cursor and Claude Desktop (Gemini CLI is an addit
 - `memory_search` — natural-language query. Use this to verify a note you just pushed.
 - `memory_for_file` — only when a real repo-relative `file_path` is supplied. Do not call it for general questions without a path.
 
-Get a workspace key: https://www.neither.online/developers/quickstart
+Get a workspace key (Free, no card): open https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp → click **Run the 5-minute test** → **Continue with Google** → copy the `sk_ctx_` workspace key.
 
 Do not put the workspace key in chat, feedback, or GitHub, and do not ask the user to paste it there. Set it only in the MCP client config and in the CLI terminal session (steps 2-3).
 
