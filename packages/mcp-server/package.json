@@ -1,11 +1,11 @@
 {
   "name": "@neitherai/mcp-server",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "description": "Neither decision-memory MCP server for Cursor and Claude Desktop",
   "license": "MIT",
   "mcpName": "io.github.stonianua/neither-mcp",
-  "homepage": "https://www.neither.online/docs/mcp",
+  "homepage": "https://www.neither.online/start/?product=dev&utm_source=npm",
   "bugs": {
     "url": "https://github.com/stonianua/neither-mcp/issues"
   },
