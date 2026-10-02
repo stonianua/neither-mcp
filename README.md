@@ -1,5 +1,7 @@
 # neither-mcp
 
+[![AllMCPs Verified](https://allmcps.com/api/badge/neither-mcp)](https://allmcps.com/mcp/neither-mcp?verify=986a5304-287d-4b8f-9cb9-8ebb70941948)
+
 Public source mirror for the Neither CLI and MCP server.
 
 Neither is decision memory for **Cursor**, **Claude Desktop**, and **Claude Code**, with Gemini CLI as an additional install surface. Start / get a workspace API key: [https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp](https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp). The npm package homepage uses the same `/start` URL with `utm_source=npm`.
