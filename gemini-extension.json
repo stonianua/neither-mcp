@@ -13,7 +13,7 @@
   "mcpServers": {
     "neither": {
       "command": "npx",
-      "args": ["-y", "@neitherai/mcp-server@0.1.2"],
+      "args": ["-y", "@neitherai/mcp-server@0.1.3"],
       "env": {
         "NEITHER_API_KEY": "${NEITHER_API_KEY}",
         "NEITHER_API_BASE": "https://api.neither.online"
