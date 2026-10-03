@@ -43,7 +43,7 @@ Equivalent manual steps (from the repo root):
 cd packages/mcp-server && npm install && npm run build && cd ../..
 cd mcpb && npm install --omit=dev --install-links=true --no-package-lock && cd ..
 npx -y @anthropic-ai/mcpb validate mcpb/manifest.json
-npx -y @anthropic-ai/mcpb pack mcpb neither-mcp-0.1.2.mcpb
+npx -y @anthropic-ai/mcpb pack mcpb neither-mcp-0.1.3.mcpb
 ```
 
 `mcpb/node_modules` is generated at pack time. Do not commit it.
@@ -52,7 +52,7 @@ npx -y @anthropic-ai/mcpb pack mcpb neither-mcp-0.1.2.mcpb
 
 Claude Desktop runs on **macOS** and **Windows**. This cloud environment cannot run Claude Desktop; sideload and smoke must be done on a human machine.
 
-1. Build `neither-mcp-0.1.2.mcpb` (or the version in `mcpb/manifest.json`).
+1. Build `neither-mcp-0.1.3.mcpb` (or the version in `mcpb/manifest.json`).
 2. Install the file in Claude Desktop using any of:
    - Double-click the `.mcpb`
    - Drag and drop the `.mcpb` onto the Claude Desktop window

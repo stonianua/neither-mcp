@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "neither-mcp",
   "display_name": "Neither",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Decision memory with cited Decision/Rejected/Constraint/Citation via memory_for_file",
   "long_description": "Neither is decision memory for Cursor and Claude Desktop. This desktop extension runs a local stdio MCP server (Node 20+) bundled from @neitherai/mcp-server. Tools return cited Decision / Rejected / Constraint / Citation prose, including supersession. Requires a workspace API key (NEITHER_API_KEY). Get a workspace key at https://www.neither.online/start/?product=dev",
   "author": {

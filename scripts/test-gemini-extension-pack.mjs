@@ -26,7 +26,7 @@ import {
 } from "./lib/gemini-cli-0.59-release-asset.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const MCPB_NAME = "neither-mcp-0.1.2.mcpb";
+const MCPB_NAME = "neither-mcp-0.1.3.mcpb";
 
 /** Operator fixture 2026-09-14: latest GitHub Release v0.1.2 sole custom asset. */
 const BROKEN_RELEASE_ASSETS = [{ name: MCPB_NAME }];

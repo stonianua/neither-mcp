@@ -44,7 +44,7 @@ gh repo edit stonianua/neither-mcp \
 This repo does not publish to Smithery. After packing, a human logged into [smithery.ai](https://smithery.ai) can upload the stdio bundle (do not publish as remote HTTP):
 
 ```bash
-npx smithery mcp publish ./neither-mcp-0.1.2.mcpb -n <your-smithery-qualified-name>
+npx smithery mcp publish ./neither-mcp-0.1.3.mcpb -n <your-smithery-qualified-name>
 ```
 
 See [Smithery local MCPB publish](https://www.smithery.ai/docs/build/publish).
