@@ -9,7 +9,7 @@ type PackageJson = {
 /** Used only if package.json is missing next to dist/ (some registry image layouts). */
 const FALLBACK_PACKAGE_JSON: PackageJson = {
   name: "@neitherai/mcp-server",
-  version: "0.1.2",
+  version: "0.1.4",
   mcpName: "io.github.stonianua/neither-mcp",
 };
 

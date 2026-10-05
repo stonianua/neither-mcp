@@ -21,13 +21,23 @@ export type NeitherCliConfig = {
   apiKey: string;
 };
 
+/** Printed when NEITHER_API_KEY is missing or whitespace-only. */
+export const MISSING_API_KEY_START_URL =
+  "https://www.neither.online/start/?product=dev&utm_source=cli-nokey";
+
+export const MISSING_API_KEY_MESSAGE = [
+  "Neither needs an API key.",
+  `Get a free key (1 minute, Google sign-in) at ${MISSING_API_KEY_START_URL}`,
+  "Then set NEITHER_API_KEY=sk_ctx_... in your shell and retry.",
+].join("\n");
+
 export function readNeitherCliConfig(env: NodeJS.ProcessEnv = process.env): NeitherCliConfig {
   const apiKey = (env.NEITHER_API_KEY ?? "").trim();
   const apiBase = (env.NEITHER_API_BASE ?? env.NEITHER_API_URL ?? "https://api.neither.online")
     .trim()
     .replace(/\/+$/, "");
   if (!apiKey) {
-    throw new Error("NEITHER_API_KEY is required (sk_ctx_* bearer token with can_ingest)");
+    throw new Error(MISSING_API_KEY_MESSAGE);
   }
   return { apiBase, apiKey };
 }

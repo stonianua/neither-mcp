@@ -3,6 +3,7 @@
  * @neitherai/mcp-server — stdio MCP server for decision-memory tools.
  */
 
+import { writeSync } from "node:fs";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
@@ -126,7 +127,21 @@ async function main(): Promise<void> {
   await server.connect(transport);
 }
 
-main().catch((e) => {
-  console.error(e instanceof Error ? e.message : String(e));
+/** Write to stderr before exit so MCP stdio clients surface the message (not stdout JSON-RPC). */
+function exitWithStderr(message: string): never {
+  const line = message.endsWith("\n") ? message : `${message}\n`;
+  try {
+    writeSync(process.stderr.fd, line);
+  } catch {
+    try {
+      process.stderr.write(line);
+    } catch {
+      // Last resort: process is exiting anyway.
+    }
+  }
   process.exit(1);
+}
+
+main().catch((e) => {
+  exitWithStderr(e instanceof Error ? e.message : String(e));
 });
