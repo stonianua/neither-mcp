@@ -66,6 +66,8 @@ Then `claude mcp list` should show `neither` as Connected. Put the workspace key
 
 Equivalent JSON (if you edit Claude Code user MCP config by hand) matches the Cursor / Claude Desktop block below.
 
+Guide: [Keeping Claude Code's rules and memory from being rewritten or lost](./docs/claude-code-protect-rules.md) (deny rules, a PreToolUse hook, git, and what survives `/compact`).
+
 ## Claude Desktop (MCPB)
 
 One-click local stdio bundle for Claude Desktop. Pack command:
