@@ -6,6 +6,20 @@ Public source mirror for the Neither CLI and MCP server.
 
 Neither is decision memory for **Cursor**, **Claude Desktop**, and **Claude Code**, with Gemini CLI as an additional install surface. Start / get a workspace API key: [https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp](https://www.neither.online/start/?product=dev&utm_source=plugin&utm_campaign=neither-mcp). The npm package homepage uses the same `/start` URL with `utm_source=npm`.
 
+### Add to Claude (no install)
+
+Paste this URL in Claude (claude.ai → **Customize → Connectors → Add custom connector**). No Node, no npx, no API key to paste.
+
+```
+https://api.neither.online/mcp
+```
+
+1. Name the connector **Neither**.
+2. Paste the URL; Claude shows **Server found**.
+3. Choose **Sign in now** (OAuth client: Register automatically), then Continue with Google on neither.online and Allow workspace.
+
+If Claude shows "No sign-in", choose "Sign in now".
+
 **Install (Node 20+):** `npx -y @neitherai/mcp-server@latest` — then set `NEITHER_API_KEY` in your MCP config (Cursor `mcp.json`, Claude Desktop, or Claude Code `claude mcp add`).
 
 ### Try Neither in Cursor

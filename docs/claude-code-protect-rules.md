@@ -92,4 +92,18 @@ After compaction, Claude Code re-reads the project-root `CLAUDE.md` from disk an
 
 ## If you want memory that persists across tools and sessions
 
-The steps above protect instructions inside one Claude Code project. If what you're after is decisions and context that carry across sessions, repos, and tools (Claude Code, Cursor, Claude Desktop), we built Neither for that: an MCP server that stores your team's decisions and lets the agent search them. You can try it from [the Neither start page](https://www.neither.online/start/?product=dev&utm_source=guide&utm_campaign=claude-code-rules).
+The steps above protect instructions inside one Claude Code project. If what you're after is decisions and context that carry across sessions, repos, and tools (Claude Code, Cursor, Claude Desktop), we built Neither for that: an MCP server that stores your team's decisions and lets the agent search them.
+
+**Add to Claude (no install).** Paste this URL in Claude (claude.ai → **Customize → Connectors → Add custom connector**). No Node, no npx, no API key to paste.
+
+```
+https://api.neither.online/mcp
+```
+
+1. Name the connector **Neither**.
+2. Paste the URL; Claude shows **Server found**.
+3. Choose **Sign in now** (OAuth client: Register automatically), then Continue with Google on neither.online and Allow workspace.
+
+If Claude shows "No sign-in", choose "Sign in now".
+
+You can also start from [the Neither start page](https://www.neither.online/start/?product=dev&utm_source=guide&utm_campaign=claude-code-rules).
