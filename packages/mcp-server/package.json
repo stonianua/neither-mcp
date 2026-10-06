@@ -2,7 +2,7 @@
   "name": "@neitherai/mcp-server",
   "version": "0.1.3",
   "type": "module",
-  "description": "Neither decision-memory MCP server for Cursor and Claude Desktop",
+  "description": "Decision memory for your coding agent: it stops re-proposing what your team already rejected, and cites why.",
   "license": "MIT",
   "mcpName": "io.github.stonianua/neither-mcp",
   "homepage": "https://www.neither.online/start/?product=dev&utm_source=npm",

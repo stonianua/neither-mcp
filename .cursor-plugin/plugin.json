@@ -2,7 +2,7 @@
   "name": "neither",
   "displayName": "Neither",
   "version": "0.1.0",
-  "description": "Decision memory for Cursor via a local stdio MCP server (Node 20+). Tools return cited Decision / Rejected / Constraint / Citation, including supersession. Requires a workspace API key (NEITHER_API_KEY).",
+  "description": "Decision memory for your coding agent: it stops re-proposing what your team already rejected, and cites why.",
   "author": {
     "name": "Fedir Martynov / Neither",
     "email": "support@neither.online"

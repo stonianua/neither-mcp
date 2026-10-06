@@ -1,7 +1,7 @@
 {
   "name": "neither-mcp",
   "version": "0.1.2",
-  "description": "Company decision-memory MCP for AI agents — search, retrieve, and push durable context. Get a key at https://www.neither.online/start/?product=dev",
+  "description": "Decision memory for your coding agent: it stops re-proposing what your team already rejected, and cites why.",
   "settings": [
     {
       "name": "Neither API Key",

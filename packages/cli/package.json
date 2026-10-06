@@ -2,7 +2,7 @@
   "name": "neither",
   "version": "0.1.1",
   "type": "module",
-  "description": "Neither CLI — push local docs to decision memory",
+  "description": "Decision memory for your coding agent: it stops re-proposing what your team already rejected, and cites why.",
   "license": "MIT",
   "homepage": "https://www.neither.online/docs/cli",
   "bugs": {
