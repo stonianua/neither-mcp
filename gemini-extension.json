@@ -1,6 +1,6 @@
 {
   "name": "neither-mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Company decision-memory MCP for AI agents — search, retrieve, and push durable context. Get a key at https://www.neither.online/start/?product=dev",
   "settings": [
     {

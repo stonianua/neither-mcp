@@ -54,7 +54,7 @@ jobs:
         run: node scripts/test-extracted-mcpb.mjs
 
   # Existing workflow file so this branch's CI runs the 0.59 github-release
-  # fixture. Dedicated gemini-extension.yml attaches archives after merge to main.
+  # fixture. Tag/release attach of .mcpb + Gemini archives is release.yml.
   gemini-extension-pack:
     runs-on: ubuntu-latest
     steps:

@@ -18,8 +18,6 @@ on:
       - "scripts/test-gemini-extension-pack.mjs"
       - "scripts/lib/gemini-cli-0.59-release-asset.mjs"
       - ".github/workflows/gemini-extension.yml"
-  release:
-    types: [published]
   workflow_dispatch:
 
 permissions:
@@ -44,33 +42,3 @@ jobs:
             linux.neither-mcp.tar.gz
             win32.neither-mcp.zip
           if-no-files-found: error
-
-  attach-to-release:
-    needs: pack-and-test
-    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: neither-gemini-extension
-          path: .
-      - name: Attach Gemini archives to the GitHub Release (keep .mcpb)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          ls -l darwin.neither-mcp.tar.gz linux.neither-mcp.tar.gz win32.neither-mcp.zip
-          TAG="${{ github.event.release.tag_name }}"
-          if [[ -z "${TAG}" ]]; then
-            TAG="$(gh release view --json tagName --jq .tagName)"
-          fi
-          # Do not delete or replace neither-mcp-*.mcpb — Claude Desktop path.
-          gh release upload "${TAG}" \
-            darwin.neither-mcp.tar.gz \
-            linux.neither-mcp.tar.gz \
-            win32.neither-mcp.zip \
-            --clobber
-          echo "Attached Gemini CLI archives to ${TAG} (Claude .mcpb left in place)."

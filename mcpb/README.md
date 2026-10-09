@@ -18,7 +18,7 @@ The archive vendors `node_modules` and spawns `node ${__dirname}/server/index.js
 
 ## CI
 
-`.github/workflows/mcpb.yml` builds the server, runs annotation tests, validates the manifest, packs the bundle, then extracts the `.mcpb` outside the checkout and launches the manifest entry point (no repo `node_modules`, npm, or npx) for initialize / tools/list and a missing-key check. Authenticated retrieval runs only when a workspace key is present in same-repo CI secrets; otherwise it is reported **NOT TESTED**. The `.mcpb` is a CI artifact (not committed). GitHub Releases should keep that `.mcpb` for Claude Desktop. Gemini CLI 0.59 github-release install is a **separate** set of `.tar.gz` / `.zip` assets (`scripts/pack-gemini-extension.sh`); do not replace the `.mcpb` with those.
+`.github/workflows/mcpb.yml` builds the server, runs annotation tests, validates the manifest, packs the bundle, then extracts the `.mcpb` outside the checkout and launches the manifest entry point (no repo `node_modules`, npm, or npx) for initialize / tools/list and a missing-key check. Authenticated retrieval runs only when a workspace key is present in same-repo CI secrets; otherwise it is reported **NOT TESTED**. The `.mcpb` is a CI artifact (not committed). `.github/workflows/release.yml` packs the `.mcpb` **and** the Gemini CLI `.tar.gz` / `.zip` archives together and attaches both to the GitHub Release for the published tag. Do not replace the `.mcpb` with the Gemini archives.
 
 ## GitHub About leftover
 
@@ -44,7 +44,7 @@ gh repo edit stonianua/neither-mcp \
 This repo does not publish to Smithery. After packing, a human logged into [smithery.ai](https://smithery.ai) can upload the stdio bundle (do not publish as remote HTTP):
 
 ```bash
-npx smithery mcp publish ./neither-mcp-0.1.2.mcpb -n <your-smithery-qualified-name>
+npx smithery mcp publish ./neither-mcp-0.1.3.mcpb -n <your-smithery-qualified-name>
 ```
 
 See [Smithery local MCPB publish](https://www.smithery.ai/docs/build/publish).

@@ -23,7 +23,7 @@ Neither is a hosted company-context graph (decision memory) for AI agents.
 
 ## Notes
 
-- Primary tested clients: Cursor and Claude Desktop. Gemini CLI is an additional install surface and uses the same npm package `@neitherai/mcp-server@0.1.2` over stdio (`npx -y`).
+- Primary tested clients: Cursor and Claude Desktop. Gemini CLI is an additional install surface and uses the same npm package `@neitherai/mcp-server@0.1.3` over stdio (`npx -y`).
 - `NEITHER_API_KEY` is required (sensitive setting).
 - This file does not mean a Gemini gallery card is live.
 - Requires Node.js 20+.

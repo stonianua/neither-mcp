@@ -1,0 +1,136 @@
+name: release-assets
+
+# Pack Claude Desktop .mcpb and Gemini CLI github-release archives together
+# and attach both to the GitHub Release. Does not create the tag, publish npm,
+# or open the release — Ted does that after merge.
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/release.yml"
+      - "mcpb/**"
+      - "packages/mcp-server/**"
+      - "scripts/pack-mcpb.sh"
+      - "scripts/test-extracted-mcpb.mjs"
+      - "scripts/pack-gemini-extension.sh"
+      - "scripts/test-gemini-extension-pack.mjs"
+      - "scripts/lib/gemini-cli-0.59-release-asset.mjs"
+      - "gemini-extension.json"
+      - "GEMINI.md"
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing GitHub Release tag to attach assets to (e.g. v0.1.3)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  pack-mcpb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || github.event.inputs.tag || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install, build, and test MCP server
+        working-directory: packages/mcp-server
+        run: |
+          npm install
+          npm run build
+          npm test
+      - name: Validate MCPB manifest
+        run: npx -y @anthropic-ai/mcpb validate mcpb/manifest.json
+      - name: Pack MCPB
+        run: bash scripts/pack-mcpb.sh
+      - name: Upload MCPB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: neither-mcpb
+          path: neither-mcp-*.mcpb
+          if-no-files-found: error
+      - name: Extracted MCPB first-use
+        env:
+          NEITHER_MCPB_TEST_API_KEY: ${{ secrets.NEITHER_MCPB_TEST_API_KEY }}
+          NEITHER_API_KEY: ${{ secrets.NEITHER_API_KEY }}
+          NEITHER_API_BASE: ${{ secrets.NEITHER_API_BASE }}
+        run: node scripts/test-extracted-mcpb.mjs
+
+  pack-gemini:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || github.event.inputs.tag || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Pack and test Gemini CLI github-release archives
+        run: node scripts/test-gemini-extension-pack.mjs
+      - name: Upload Gemini CLI archives
+        uses: actions/upload-artifact@v4
+        with:
+          name: neither-gemini-extension
+          path: |
+            darwin.neither-mcp.tar.gz
+            linux.neither-mcp.tar.gz
+            win32.neither-mcp.zip
+          if-no-files-found: error
+
+  attach-to-release:
+    needs: [pack-mcpb, pack-gemini]
+    if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: neither-mcpb
+          path: .
+      - uses: actions/download-artifact@v4
+        with:
+          name: neither-gemini-extension
+          path: .
+      - name: Attach Claude .mcpb and Gemini archives
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_TAG: ${{ github.event.release.tag_name }}
+          DISPATCH_TAG: ${{ github.event.inputs.tag }}
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          MCPBS=(neither-mcp-*.mcpb)
+          if [[ ${#MCPBS[@]} -ne 1 ]]; then
+            echo "error: expected exactly one .mcpb, found: ${MCPBS[*]:-none}" >&2
+            exit 1
+          fi
+          ls -l "${MCPBS[0]}" darwin.neither-mcp.tar.gz linux.neither-mcp.tar.gz win32.neither-mcp.zip
+          TAG="${EVENT_TAG:-}"
+          if [[ -z "${TAG}" ]]; then
+            TAG="${DISPATCH_TAG:-}"
+          fi
+          if [[ -z "${TAG}" ]]; then
+            echo "error: no release tag (publish v0.1.3 with gh release create, or pass tag to workflow_dispatch)" >&2
+            exit 1
+          fi
+          EXPECTED="neither-mcp-${TAG#v}.mcpb"
+          if [[ "${MCPBS[0]}" != "${EXPECTED}" ]]; then
+            echo "error: tag ${TAG} requires ${EXPECTED}, got ${MCPBS[0]}" >&2
+            exit 1
+          fi
+          gh release view "${TAG}" >/dev/null
+          # Attach both client bundles. Do not delete either set.
+          gh release upload "${TAG}" \
+            "${MCPBS[0]}" \
+            darwin.neither-mcp.tar.gz \
+            linux.neither-mcp.tar.gz \
+            win32.neither-mcp.zip \
+            --clobber
+          echo "Attached ${MCPBS[0]} and Gemini CLI archives to ${TAG}."
+          gh release view "${TAG}" --json assets --jq '.assets[].name'

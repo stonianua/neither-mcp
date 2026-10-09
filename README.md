@@ -82,11 +82,11 @@ Sideload steps, env vars, and the Windows + macOS smoke checklist (human; not ru
 
 This packaging does **not** mean the extension is listed or submitted to Anthropic.
 
-See also [mcpb/README.md](./mcpb/README.md). CI may attach a built `.mcpb` to the GitHub Release. Do not remove that asset when attaching Gemini CLI archives.
+See also [mcpb/README.md](./mcpb/README.md). The `release-assets` workflow attaches the `.mcpb` and Gemini CLI archives together on a published GitHub Release. Do not remove the `.mcpb`.
 
 ## Gemini CLI (additional install)
 
-Primary tested clients remain **Cursor** and **Claude Desktop**. Gemini CLI uses the same stdio server (`npx -y @neitherai/mcp-server@0.1.2` in `gemini-extension.json`; Cursor JSON uses `@latest`). This is **not** a claim that a Gemini gallery card is live.
+Primary tested clients remain **Cursor** and **Claude Desktop**. Gemini CLI uses the same stdio server (`npx -y @neitherai/mcp-server@0.1.3` in `gemini-extension.json`; Cursor JSON uses `@latest`). This is **not** a claim that a Gemini gallery card is live.
 
 ```bash
 gemini extensions install https://github.com/stonianua/neither-mcp
@@ -94,7 +94,7 @@ gemini extensions install https://github.com/stonianua/neither-mcp
 
 Enter `NEITHER_API_KEY` when prompted (required). Node.js 20+. MCP stays Disconnected until the key is set.
 
-Gemini CLI 0.59 treats that GitHub URL as a **github-release** install: it downloads a custom Release asset and only extracts `.tar.gz` / `.zip`. Release `v0.1.2` attaches `linux.neither-mcp.tar.gz`, `darwin.neither-mcp.tar.gz`, and `win32.neither-mcp.zip` (`gemini-extension.json` at archive root) in addition to the Claude Desktop `.mcpb`. A Release whose only custom asset is the `.mcpb` still makes 0.59 unpack a non-extension tree, then `git clone` into the same non-empty temp dir fails — do not remove the `.mcpb`.
+Gemini CLI 0.59 treats that GitHub URL as a **github-release** install: it downloads a custom Release asset and only extracts `.tar.gz` / `.zip`. Release `v0.1.3` attaches `linux.neither-mcp.tar.gz`, `darwin.neither-mcp.tar.gz`, and `win32.neither-mcp.zip` (`gemini-extension.json` at archive root, npm pin `@neitherai/mcp-server@0.1.3`) in addition to the Claude Desktop `.mcpb`. A Release whose only custom asset is the `.mcpb` still makes 0.59 unpack a non-extension tree, then `git clone` into the same non-empty temp dir fails — do not remove the `.mcpb`.
 
 If those Gemini archives misbehave, clone `main` instead:
 

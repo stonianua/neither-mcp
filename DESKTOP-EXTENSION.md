@@ -43,7 +43,7 @@ Equivalent manual steps (from the repo root):
 cd packages/mcp-server && npm install && npm run build && cd ../..
 cd mcpb && npm install --omit=dev --install-links=true --no-package-lock && cd ..
 npx -y @anthropic-ai/mcpb validate mcpb/manifest.json
-npx -y @anthropic-ai/mcpb pack mcpb neither-mcp-0.1.2.mcpb
+npx -y @anthropic-ai/mcpb pack mcpb neither-mcp-0.1.3.mcpb
 ```
 
 `mcpb/node_modules` is generated at pack time. Do not commit it.
@@ -52,7 +52,7 @@ npx -y @anthropic-ai/mcpb pack mcpb neither-mcp-0.1.2.mcpb
 
 Claude Desktop runs on **macOS** and **Windows**. This cloud environment cannot run Claude Desktop; sideload and smoke must be done on a human machine.
 
-1. Build `neither-mcp-0.1.2.mcpb` (or the version in `mcpb/manifest.json`).
+1. Build `neither-mcp-0.1.3.mcpb` (or the version in `mcpb/manifest.json`).
 2. Install the file in Claude Desktop using any of:
    - Double-click the `.mcpb`
    - Drag and drop the `.mcpb` onto the Claude Desktop window
@@ -106,7 +106,7 @@ Do not invent a customer story or paste untested install proof into the form.
 
 Keep `neither-mcp-<version>.mcpb` on the GitHub Release. That is the Claude Desktop sideload file.
 
-Gemini CLI 0.59 `gemini extensions install https://github.com/stonianua/neither-mcp` prefers a github-release asset and only extracts `.tar.gz` / `.zip`. If the `.mcpb` is the **only** custom asset, 0.59 downloads it, fails to extract, then `git clone` into the same temp dir fails. CI attaches `linux.neither-mcp.tar.gz`, `darwin.neither-mcp.tar.gz`, and `win32.neither-mcp.zip` (same stdio `npx` extension; `gemini-extension.json` at archive root) **in addition to** the `.mcpb`. Do not delete the `.mcpb` to “fix” Gemini.
+Gemini CLI 0.59 `gemini extensions install https://github.com/stonianua/neither-mcp` prefers a github-release asset and only extracts `.tar.gz` / `.zip`. If the `.mcpb` is the **only** custom asset, 0.59 downloads it, fails to extract, then `git clone` into the same temp dir fails. The `release-assets` workflow (`.github/workflows/release.yml`) packs and attaches `neither-mcp-<version>.mcpb` together with `linux.neither-mcp.tar.gz`, `darwin.neither-mcp.tar.gz`, and `win32.neither-mcp.zip` (same stdio `npx` extension; `gemini-extension.json` at archive root) when tag `v0.1.3` is published. Do not delete the `.mcpb` to “fix” Gemini.
 
 ## Privacy (connector)
 
