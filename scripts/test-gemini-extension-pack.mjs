@@ -26,9 +26,11 @@ import {
 } from "./lib/gemini-cli-0.59-release-asset.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const MCPB_NAME = "neither-mcp-0.1.2.mcpb";
+const EXTENSION_VERSION = "0.1.3";
+const PINNED_MCP_SERVER = "@neitherai/mcp-server@0.1.3";
+const MCPB_NAME = "neither-mcp-0.1.3.mcpb";
 
-/** Operator fixture 2026-09-14: latest GitHub Release v0.1.2 sole custom asset. */
+/** Sole Claude Desktop `.mcpb` is not extractable by Gemini CLI 0.59 (operator fixture 2026-09-14 on v0.1.2). */
 const BROKEN_RELEASE_ASSETS = [{ name: MCPB_NAME }];
 
 const tempDirs = [];
@@ -81,8 +83,11 @@ function readExtensionAt(dir) {
     fail(`expected stdio command npx, got ${server.command}`);
   }
   const args = Array.isArray(server.args) ? server.args : [];
-  if (!args.includes("-y") || !args.some((a) => String(a).startsWith("@neitherai/mcp-server"))) {
-    fail(`expected npx -y @neitherai/mcp-server…, got ${JSON.stringify(args)}`);
+  if (!args.includes("-y") || !args.includes(PINNED_MCP_SERVER)) {
+    fail(`expected npx -y ${PINNED_MCP_SERVER}, got ${JSON.stringify(args)}`);
+  }
+  if (config.version !== EXTENSION_VERSION) {
+    fail(`gemini-extension.json version must be ${EXTENSION_VERSION}, got ${config.version}`);
   }
   const keySetting = (config.settings ?? []).find((s) => s.envVar === "NEITHER_API_KEY");
   if (!keySetting || keySetting.sensitive !== true) {

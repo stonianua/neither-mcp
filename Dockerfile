@@ -26,7 +26,7 @@ RUN set -eu; \
     npm run build; \
     npm prune --omit=dev; \
   else \
-    npm install --no-audit --no-fund @neitherai/mcp-server@0.1.2; \
+    npm install --no-audit --no-fund @neitherai/mcp-server@0.1.3; \
     cp -a /app/node_modules/@neitherai/mcp-server/. /tmp/pkg/; \
     rm -rf /app/node_modules /app/package.json /app/package-lock.json; \
     cp -a /tmp/pkg/. /app/; \
